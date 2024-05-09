@@ -1,0 +1,11 @@
+{
+    "projects": [{
+        "name": "0xFar777-SBT",
+        "path": "./src/contracts/NFT.tact",
+        "output": "./src/contracts/output",
+        "options": {
+            "external": true,
+            "debug": true
+        }
+    }]
+}

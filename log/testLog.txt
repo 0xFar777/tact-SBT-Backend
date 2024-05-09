@@ -1,0 +1,66 @@
+Next IndexID: 1
+Collection Address: EQCceTdT-lJt0y1TqtDiEt59ZsYeUUmElS6USiOKIhHM4Djr
+┌─────────┬──────────────┬────────────────┬────────────────┬────────────────┬────────────────┬────────────────┬────────────┬────────────────┬──────────┬────────────┐
+│ (index) │      op      │    valueIn     │    valueOut    │   totalFees    │  inForwardFee  │ outForwardFee  │ outActions │   computeFee   │ exitCode │ actionCode │
+├─────────┼──────────────┼────────────────┼────────────────┼────────────────┼────────────────┼────────────────┼────────────┼────────────────┼──────────┼────────────┤
+│    0    │    'N/A'     │     'N/A'      │    '1 TON'     │ '0.003967 TON' │     'N/A'      │  '0.001 TON'   │     1      │ '0.001937 TON' │    0     │     0      │
+│    1    │    '0x0'     │    '1 TON'     │ '0.961687 TON' │ '0.027316 TON' │ '0.000667 TON' │ '0.017961 TON' │     2      │ '0.020053 TON' │    0     │     0      │
+│    2    │ '0x5fcc3d14' │ '0.961687 TON' │ '0.921687 TON' │ '0.011346 TON' │ '0.010699 TON' │ '0.001196 TON' │     1      │ '0.010947 TON' │    0     │     0      │
+│    3    │ '0xd53276db' │ '0.921687 TON' │    '0 TON'     │ '0.000309 TON' │ '0.000798 TON' │     'N/A'      │     0      │ '0.000309 TON' │    0     │     0      │
+└─────────┴──────────────┴────────────────┴────────────────┴────────────────┴────────────────┴────────────────┴────────────┴────────────────┴──────────┴────────────┘
+null  ➡️  EQBGhqLAZseEqRXz4ByFPTGV7SVMlI4hrbs-Sps_Xzx01x8G
+     ➡️  1 💎 EQCceTdT-lJt0y1TqtDiEt59ZsYeUUmElS6USiOKIhHM4Djr
+
+
+EQBGhqLAZseEqRXz4ByFPTGV7SVMlI4hrbs-Sps_Xzx01x8G  ➡️  EQCceTdT-lJt0y1TqtDiEt59ZsYeUUmElS6USiOKIhHM4Djr
+     ➡️  0.961687 💎 EQCB90ZXIFjzfDucSAwy6a9jvGk9SC-aLIydQMC9y5QSPClU
+      ➡️  null
+
+
+EQCceTdT-lJt0y1TqtDiEt59ZsYeUUmElS6USiOKIhHM4Djr  ➡️  EQCB90ZXIFjzfDucSAwy6a9jvGk9SC-aLIydQMC9y5QSPClU
+     ➡️  0.921687 💎 EQBGhqLAZseEqRXz4ByFPTGV7SVMlI4hrbs-Sps_Xzx01x8G
+
+
+EQCB90ZXIFjzfDucSAwy6a9jvGk9SC-aLIydQMC9y5QSPClU  ➡️  EQBGhqLAZseEqRXz4ByFPTGV7SVMlI4hrbs-Sps_Xzx01x8G
+
+
+
+========================================================================================
+External Message(string - base64): te6cckEBAQEAaAAAyymhSsuACNDUWAzY8JUivnwDkKemMr2kqZKRxDW3Z8lTZ+vnjprgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEWkRK+xZajl3eoL4yS5Io8YASik21b1IMHfxv4AFFT7vEXYYFc=
+External Message(string - hex): b5ee9c724101010100680000cb29a14acb8008d0d4580cd8f09522be7c0390a7a632bda4a99291c435b767c95367ebe78e9ae00000000000000000000000000000000000000000000000000000000000000045a444afb165a8e5ddea0be324b9228f180128a4db56f520c1dfc6fe001454fbbc45d86057
+========================================================================================
+ItemId: 4
+Number: 81657638942858608176442497937831058709924230172957183862114078293265832648567
+Next IndexID: 1
+Collection Address: EQDEQukSA48_lbAKJFAkh5aqJhbSvqLoFCy3AWlHkixCNOX-
+┌─────────┬──────────────┬────────────────┬────────────────┬────────────────┬────────────────┬────────────────┬────────────┬────────────────┬──────────┬────────────┐
+│ (index) │      op      │    valueIn     │    valueOut    │   totalFees    │  inForwardFee  │ outForwardFee  │ outActions │   computeFee   │ exitCode │ actionCode │
+├─────────┼──────────────┼────────────────┼────────────────┼────────────────┼────────────────┼────────────────┼────────────┼────────────────┼──────────┼────────────┤
+│    0    │    'N/A'     │     'N/A'      │    '1 TON'     │ '0.003967 TON' │     'N/A'      │  '0.001 TON'   │     1      │ '0.001937 TON' │    0     │     0      │
+│    1    │    '0x0'     │    '1 TON'     │ '0.960922 TON' │ '0.02939 TON'  │ '0.000667 TON' │ '0.015909 TON' │     2      │ '0.022811 TON' │    0     │     0      │
+│    2    │ '0x5fcc3d14' │ '0.960922 TON' │ '0.920922 TON' │ '0.011356 TON' │ '0.009331 TON' │ '0.001196 TON' │     1      │ '0.010957 TON' │    0     │     0      │
+│    3    │ '0xd53276db' │ '0.920922 TON' │    '0 TON'     │ '0.000309 TON' │ '0.000798 TON' │     'N/A'      │     0      │ '0.000309 TON' │    0     │     0      │
+└─────────┴──────────────┴────────────────┴────────────────┴────────────────┴────────────────┴────────────────┴────────────┴────────────────┴──────────┴────────────┘
+null  ➡️  EQBGhqLAZseEqRXz4ByFPTGV7SVMlI4hrbs-Sps_Xzx01x8G
+     ➡️  1 💎 EQDEQukSA48_lbAKJFAkh5aqJhbSvqLoFCy3AWlHkixCNOX-
+
+
+EQBGhqLAZseEqRXz4ByFPTGV7SVMlI4hrbs-Sps_Xzx01x8G  ➡️  EQDEQukSA48_lbAKJFAkh5aqJhbSvqLoFCy3AWlHkixCNOX-
+     ➡️  0.960922 💎 EQDoxIydmuTNkDpsF2fH8vj4qbDYdGzFFOTyUJQRezs2FJaD
+      ➡️  null
+
+
+EQDEQukSA48_lbAKJFAkh5aqJhbSvqLoFCy3AWlHkixCNOX-  ➡️  EQDoxIydmuTNkDpsF2fH8vj4qbDYdGzFFOTyUJQRezs2FJaD
+     ➡️  0.920922 💎 EQBGhqLAZseEqRXz4ByFPTGV7SVMlI4hrbs-Sps_Xzx01x8G
+
+
+EQDoxIydmuTNkDpsF2fH8vj4qbDYdGzFFOTyUJQRezs2FJaD  ➡️  EQBGhqLAZseEqRXz4ByFPTGV7SVMlI4hrbs-Sps_Xzx01x8G
+
+
+
+========================================================================================
+External Message(string - base64): te6cckEBAQEAaAAAyymhSsuACNDUWAzY8JUivnwDkKemMr2kqZKRxDW3Z8lTZ+vnjprgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEHQn/0H6P3+FYi9TMYC2RaBa7dW+LJp1GjizCZt1rtofLMovfQ=
+External Message(string - hex): b5ee9c724101010100680000cb29a14acb8008d0d4580cd8f09522be7c0390a7a632bda4a99291c435b767c95367ebe78e9ae00000000000000000000000000000000000000000000000000000000000000041d09ffd07e8fdfe1588bd4cc602d916816bb756f8b269d468e2cc266dd6bb687cb328bdf4
+========================================================================================
+ItemId: 4
+Number: 26269479597627208765513738454296359802528665842301668910598398208657193397519
