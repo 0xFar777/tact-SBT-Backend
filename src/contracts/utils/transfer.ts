@@ -1,6 +1,6 @@
 import { getHttpEndpoint } from "@orbs-network/ton-access";
 import { mnemonicToWalletKey } from "ton-crypto";
-import { TonClient, WalletContractV4, Address, beginCell, toNano, internal} from "ton";
+import { TonClient, WalletContractV4, Address, beginCell, toNano, internal} from "@ton/ton";
 
 
 async function main() {

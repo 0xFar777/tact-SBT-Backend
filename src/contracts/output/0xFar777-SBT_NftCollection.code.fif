@@ -12,6 +12,7 @@ PROGRAM{
   DECLPROC __tact_context_get
   DECLPROC __tact_context_get_sender
   DECLPROC __tact_store_bool
+  DECLPROC __tact_slice_eq_bits
   DECLPROC __tact_dict_set_code
   DECLPROC __tact_dict_get_code
   DECLPROC __tact_string_builder_start
@@ -23,6 +24,7 @@ PROGRAM{
   DECLPROC $ReportRoyaltyParams$_store_cell
   DECLPROC $RoyaltyParams$_store
   DECLPROC $RoyaltyParams$_load
+  DECLPROC $Mint$_load
   DECLPROC $Transfer$_store
   DECLPROC $Transfer$_store_cell
   DECLPROC $EventMintRecord$_store
@@ -57,10 +59,11 @@ PROGRAM{
   DECLPROC $NftCollection$_fun_get_nft_address_by_index
   DECLPROC $NftCollection$_fun_get_nft_content
   DECLPROC $NftCollection$_fun_royalty_params
-  DECLPROC $EventMintRecord$_constructor_minter_item_id_generate_number
+  DECLPROC $EventMintRecord$_constructor_minter_receiver_item_id_generate_number
   DECLPROC $SendParameters$_constructor_to_value_mode_bounce_body
   DECLPROC $ReportRoyaltyParams$_constructor_query_id_numerator_denominator_destination
   DECLPROC $NftCollection$_internal_text_247c7bd5f39e2258d80ac36a0419a1ab5779757825a6cc0e915368f00610a18a
+  DECLPROC $NftCollection$_internal_binary_Mint
   DECLPROC $NftCollection$_internal_binary_GetRoyaltyParams
   102491 DECLMETHOD %get_collection_data
   92067 DECLMETHOD %get_nft_address_by_index
@@ -165,6 +168,9 @@ PROGRAM{
   __tact_store_bool PROCINLINE:<{
     SWAP
     1 STI
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
   }>
   __tact_dict_set_code PROCINLINE:<{
     s0 s2 XCHG
@@ -315,6 +321,16 @@ PROGRAM{
     __tact_load_address INLINECALLDICT
     s3 s3 s0 XCHG3
   }>
+  $Mint$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1489984103 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    __tact_load_address INLINECALLDICT
+    s1 s2 XCHG
+  }>
   $Transfer$_store PROCREF:<{
     1607220500 PUSHINT
     s0 s7 XCHG2
@@ -350,19 +366,26 @@ PROGRAM{
     ENDC
   }>
   $EventMintRecord$_store PROCINLINE:<{
-    698436299 PUSHINT
-    s0 s4 XCHG2
+    1234213569 PUSHINT
+    s0 s5 XCHG2
     32 STU
-    ROT
+    s0 s3 XCHG2
+    __tact_store_address INLINECALLDICT
+    SWAP
     __tact_store_address INLINECALLDICT
     257 PUSHINT
     STIX
+    SWAP
+    NEWC
     257 PUSHINT
     STIX
+    ENDC
+    SWAP
+    STREF
   }>
   $EventMintRecord$_store_cell PROCINLINE:<{
     NEWC
-    3 -ROLL
+    4 -ROLL
     $EventMintRecord$_store INLINECALLDICT
     ENDC
   }>
@@ -728,7 +751,7 @@ PROGRAM{
     OVER
     $RoyaltyParams$_not_null INLINECALLDICT
   }>
-  $EventMintRecord$_constructor_minter_item_id_generate_number PROCINLINE:<{
+  $EventMintRecord$_constructor_minter_receiver_item_id_generate_number PROCINLINE:<{
   }>
   $SendParameters$_constructor_to_value_mode_bounce_body PROCINLINE:<{
     s1 s4 XCHG
@@ -755,11 +778,46 @@ PROGRAM{
     SUB
     $NftCollection$_fun_mint INLINECALLDICT
     __tact_context_get_sender INLINECALLDICT
+    __tact_context_get_sender INLINECALLDICT
     RANDU256
-    s5 s(-1) PUXC
-    $EventMintRecord$_constructor_minter_item_id_generate_number INLINECALLDICT
+    s6 s(-1) PUXC
+    $EventMintRecord$_constructor_minter_receiver_item_id_generate_number INLINECALLDICT
     $EventMintRecord$_store_cell INLINECALLDICT
     $global_emit INLINECALLDICT
+  }>
+  $NftCollection$_internal_binary_Mint PROCINLINE:<{
+    NIP
+    8610 PUSHINT
+    __tact_context_get_sender INLINECALLDICT
+    s5 s(-1) PUXC
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    __tact_context_get INLINECALLDICT
+    s1 s3 XCHG
+    3 BLKDROP
+    __tact_my_balance INLINECALLDICT
+    OVER
+    SUB
+    20000000 PUSHINT
+    TUCK
+    MIN
+    SUB
+    20000000 PUSHINT
+    ADD
+    SUB
+    s1 s5 XCHG
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+    s5 s(-1) PUXC
+    $NftCollection$_fun_mint INLINECALLDICT
+    __tact_context_get_sender INLINECALLDICT
+    RANDU256
+    s1 s6 s0 XCHG3
+    s5 s(-1) PUXC
+    $EventMintRecord$_constructor_minter_receiver_item_id_generate_number INLINECALLDICT
+    $EventMintRecord$_store_cell INLINECALLDICT
+    $global_emit INLINECALLDICT
+    3 ROLL
   }>
   $NftCollection$_internal_binary_GetRoyaltyParams PROCINLINE:<{
     __tact_context_get INLINECALLDICT
@@ -822,7 +880,7 @@ PROGRAM{
     209474421377847335869795010607481022628 PUSHINT
   }>
   get_abi_ipfs PROC:<{
-    x{697066733a2f2f516d65586455655a55464b63693955333979633537656d4550784a5a65376d58746a76616d694536757568797453} PUSHSLICE
+    x{697066733a2f2f516d6147367378546e677132556d5a71696f4c77773461486b733537324e677465533964364a356776735745415a} PUSHSLICE
   }>
   lazy_deployment_completed PROC:<{
     c4 PUSH
@@ -846,6 +904,16 @@ PROGRAM{
       DROP
       DUP
       32 PLDU
+    }>
+    DUP
+    1489984103 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Mint$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $NftCollection$_internal_binary_Mint INLINECALLDICT
+      TRUE
     }>
     DUP
     1765620048 PUSHINT

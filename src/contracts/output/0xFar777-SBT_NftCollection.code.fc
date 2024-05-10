@@ -72,7 +72,21 @@
     int $storageFee = (20000000 - min($tonBalanceBeforeMsg, 20000000));
     $msgValue = ($msgValue - ($storageFee + 20000000));
     ($self'next_item_index, $self'owner_address, $self'royalty_params, $self'collection_content)~$NftCollection$_fun_mint($ctx'sender, $msgValue);
-    $global_emit($EventMintRecord$_store_cell($EventMintRecord$_constructor_minter_item_id_generate_number(__tact_context_get_sender(), $self'next_item_index, random())));
+    $global_emit($EventMintRecord$_store_cell($EventMintRecord$_constructor_minter_receiver_item_id_generate_number(__tact_context_get_sender(), __tact_context_get_sender(), $self'next_item_index, random())));
+    return (($self'next_item_index, $self'owner_address, $self'royalty_params, $self'collection_content), ());
+}
+
+(((int, slice, tuple, cell)), ()) $NftCollection$_internal_binary_Mint((int, slice, tuple, cell) $self, (int, slice) $msg) impure inline {
+    var ($self'next_item_index, $self'owner_address, $self'royalty_params, $self'collection_content) = $self;
+    var ($msg'query_id, $msg'receiver) = $msg;
+    throw_unless(8610, ( __tact_slice_eq_bits($self'owner_address, __tact_context_get_sender()) ));
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    int $msgValue = $ctx'value;
+    int $tonBalanceBeforeMsg = (__tact_my_balance() - $msgValue);
+    int $storageFee = (20000000 - min($tonBalanceBeforeMsg, 20000000));
+    $msgValue = ($msgValue - ($storageFee + 20000000));
+    ($self'next_item_index, $self'owner_address, $self'royalty_params, $self'collection_content)~$NftCollection$_fun_mint($msg'receiver, $msgValue);
+    $global_emit($EventMintRecord$_store_cell($EventMintRecord$_constructor_minter_receiver_item_id_generate_number(__tact_context_get_sender(), $msg'receiver, $self'next_item_index, random())));
     return (($self'next_item_index, $self'owner_address, $self'royalty_params, $self'collection_content), ());
 }
 
@@ -133,7 +147,7 @@ _ supported_interfaces() method_id {
 }
 
 _ get_abi_ipfs() method_id {
-    return "ipfs://QmeXdUeZUFKci9U39yc57emEPxJZe7mXtjvamiE6uuhytS";
+    return "ipfs://QmaG6sxTngq2UmZqioLww4aHks572NgteS9d6J5gvsWEAZ";
 }
 
 _ lazy_deployment_completed() method_id {
@@ -156,6 +170,13 @@ _ lazy_deployment_completed() method_id {
         op = in_msg.preload_uint(32);
     }
     
+    
+    ;; Receive Mint message
+    if (op == 1489984103) {
+        var msg = in_msg~$Mint$_load();
+        self~$NftCollection$_internal_binary_Mint(msg);
+        return (self, true);
+    }
     
     ;; Receive GetRoyaltyParams message
     if (op == 1765620048) {

@@ -3,7 +3,7 @@ Contract: NftItem
 BOC Size: 1263 bytes
 
 # Types
-Total Types: 14
+Total Types: 15
 
 ## StateInit
 TLB: `_ code:^cell data:^cell = StateInit`
@@ -33,6 +33,10 @@ Signature: `CollectionData{next_item_index:int257,collection_content:^cell,owner
 TLB: `_ numerator:int257 denominator:int257 destination:address = RoyaltyParams`
 Signature: `RoyaltyParams{numerator:int257,denominator:int257,destination:address}`
 
+## Mint
+TLB: `mint#58cf5a67 query_id:uint64 receiver:address = Mint`
+Signature: `Mint{query_id:uint64,receiver:address}`
+
 ## Transfer
 TLB: `transfer#5fcc3d14 query_id:uint64 new_owner:address response_destination:Maybe address custom_payload:Maybe ^cell forward_amount:coins forward_payload:remainder<slice> = Transfer`
 Signature: `Transfer{query_id:uint64,new_owner:address,response_destination:Maybe address,custom_payload:Maybe ^cell,forward_amount:coins,forward_payload:remainder<slice>}`
@@ -58,8 +62,8 @@ TLB: `_ is_initialized:bool index:int257 collection_address:address owner_addres
 Signature: `GetNftData{is_initialized:bool,index:int257,collection_address:address,owner_address:address,individual_content:^cell}`
 
 ## EventMintRecord
-TLB: `event_mint_record#29a14acb minter:address item_id:int257 generate_number:int257 = EventMintRecord`
-Signature: `EventMintRecord{minter:address,item_id:int257,generate_number:int257}`
+TLB: `event_mint_record#49909ac1 minter:address receiver:address item_id:int257 generate_number:int257 = EventMintRecord`
+Signature: `EventMintRecord{minter:address,receiver:address,item_id:int257,generate_number:int257}`
 
 # Get Methods
 Total Get Methods: 1
@@ -91,6 +95,7 @@ Total Get Methods: 1
 135: Code of a contract was not found
 136: Invalid address
 137: Masterchain support is not enabled for this contract
+8610:
 17481: Initialized tx need from collection
 31507: SBT is non-transferrable
 50444: Not from SBT-Collection

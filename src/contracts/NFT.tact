@@ -4,6 +4,7 @@ const gasConsumption: Int = ton("0.02");
 
 message EventMintRecord {
     minter: Address;
+    receiver: Address;
     item_id: Int;
     generate_number: Int;
 }
@@ -20,6 +21,7 @@ contract NftCollection {
         self.royalty_params = royalty_params; 
     }
 
+    // 正常铸造，每个人都可以为自己领取SBT
     receive("Mint"){
         let ctx: Context = context();
         let msgValue: Int = ctx.value;
@@ -30,12 +32,32 @@ contract NftCollection {
 
         emit(EventMintRecord{
             minter: sender(), 
+            receiver: sender(),
             item_id: self.next_item_index, 
             generate_number: nativeRandom() 
         }.toCell());
-        
     }
 
+    // 项目方为用户铸造
+    // 此权限不对用户开放，SBT可能代表声誉，不可随意为其他用户铸造
+    receive(msg: Mint) {
+        require(sender() == self.owner_address, "");
+        let ctx: Context = context();
+        let msgValue: Int = ctx.value;
+        let tonBalanceBeforeMsg: Int = myBalance() - msgValue;
+        let storageFee: Int = minTonsForStorage - min(tonBalanceBeforeMsg, minTonsForStorage);
+        msgValue = msgValue - (storageFee + gasConsumption);
+        self.mint(msg.receiver, msgValue);
+
+        emit(EventMintRecord{
+            minter: sender(), 
+            receiver: msg.receiver,
+            item_id: self.next_item_index, 
+            generate_number: nativeRandom() 
+        }.toCell());        
+    }
+
+    
     // ===== Private Methods ===== //
     fun mint(sender: Address, msgValue: Int) {
         require(self.next_item_index >= 0, "non-sequential NFTs");
@@ -56,12 +78,11 @@ contract NftCollection {
                 code: nft_init.code,
                 data: nft_init.data
             });
-        // dump(self.next_item_index);
         self.next_item_index = self.next_item_index + 1;
     }
 
     receive(msg: GetRoyaltyParams) {   
-        let ctx: Context = context(); // get sender Info
+        let ctx: Context = context(); 
         send(SendParameters{
             to: ctx.sender,
             value: 0,
@@ -130,7 +151,7 @@ contract NftItem {
         require(!self.is_initialized, "SBT is non-transferrable");
 
         let ctx: Context = context();
-        let msgValue: Int = ctx.value; // Check the gasCost for storage
+        let msgValue: Int = ctx.value; 
         let tonBalanceBeforeMsg: Int = myBalance() - msgValue;
         let storageFee: Int = minTonsForStorage - min(tonBalanceBeforeMsg, minTonsForStorage);
         msgValue = msgValue - (storageFee + gasConsumption);

@@ -70,6 +70,10 @@ builder __tact_store_bool(builder b, int v) inline {
     return b.store_int(v, 1);
 }
 
+int __tact_slice_eq_bits(slice a, slice b) inline {
+    return equal_slice_bits(a, b);
+}
+
 cell __tact_dict_set_code(cell dict, int id, cell code) inline {
     return udict_set_ref(dict, 16, id, code);
 }

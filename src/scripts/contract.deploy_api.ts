@@ -27,10 +27,10 @@ import { NftItem } from "../contracts/output/0xFar777-SBT_NftItem";
 
     // Parameters for NFTs
     const OFFCHAIN_CONTENT_PREFIX = 0x01;
-    const string_first = "https://s.getgems.io/nft-staging/c/628f6ab8077060a7a8d52d63/"; // Change to the content URL you prepared
-    let newContent = beginCell().storeInt(OFFCHAIN_CONTENT_PREFIX, 8).storeStringRefTail(string_first).endCell();
+    const contentURI = "https://file123456.4everland.store/metadata.json"; 
+    let newContent = beginCell().storeInt(OFFCHAIN_CONTENT_PREFIX, 8).storeStringRefTail(contentURI).endCell();
 
-    let mnemonics = (process.env.mnemonics_2 || "").toString(); // 🔴 Change to your own, by creating .env file!
+    let mnemonics = (process.env.mnemonics_2 || "").toString(); 
     let keyPair = await mnemonicToPrivateKey(mnemonics.split(" "));
     let secretKey = keyPair.secretKey;
     let workchain = 0;
@@ -49,6 +49,7 @@ import { NftItem } from "../contracts/output/0xFar777-SBT_NftItem";
         destination: owner,
     });
     let deployContract = contractAddress(0, init);
+    console.log(deployContract)
     // ========================================
     let packed = beginCell().storeUint(0, 32).storeStringTail("Mint").endCell();
     // ========================================

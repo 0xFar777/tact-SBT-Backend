@@ -36,6 +36,9 @@ slice __tact_context_get_sender() inline;
 ;; __tact_store_bool
 builder __tact_store_bool(builder b, int v) inline;
 
+;; __tact_slice_eq_bits
+int __tact_slice_eq_bits(slice a, slice b) inline;
+
 ;; __tact_dict_set_code
 cell __tact_dict_set_code(cell dict, int id, cell code) inline;
 
@@ -69,6 +72,9 @@ builder $RoyaltyParams$_store(builder build_0, (int, int, slice) v) inline;
 ;; $RoyaltyParams$_load
 (slice, ((int, int, slice))) $RoyaltyParams$_load(slice sc_0) inline;
 
+;; $Mint$_load
+(slice, ((int, slice))) $Mint$_load(slice sc_0) inline;
+
 ;; $Transfer$_store
 builder $Transfer$_store(builder build_0, (int, slice, slice, cell, int, slice) v) inline_ref;
 
@@ -76,10 +82,10 @@ builder $Transfer$_store(builder build_0, (int, slice, slice, cell, int, slice) 
 cell $Transfer$_store_cell((int, slice, slice, cell, int, slice) v) inline;
 
 ;; $EventMintRecord$_store
-builder $EventMintRecord$_store(builder build_0, (slice, int, int) v) inline;
+builder $EventMintRecord$_store(builder build_0, (slice, slice, int, int) v) inline;
 
 ;; $EventMintRecord$_store_cell
-cell $EventMintRecord$_store_cell((slice, int, int) v) inline;
+cell $EventMintRecord$_store_cell((slice, slice, int, int) v) inline;
 
 ;; $RoyaltyParams$_not_null
 ((int, int, slice)) $RoyaltyParams$_not_null(tuple v) inline;
@@ -171,8 +177,8 @@ slice $global_contractAddress((cell, cell) $s) impure inline;
 ;; $NftCollection$_fun_royalty_params
 ((int, slice, tuple, cell), (int, int, slice)) $NftCollection$_fun_royalty_params((int, slice, tuple, cell) $self) impure inline_ref;
 
-;; $EventMintRecord$_constructor_minter_item_id_generate_number
-((slice, int, int)) $EventMintRecord$_constructor_minter_item_id_generate_number(slice minter, int item_id, int generate_number) inline;
+;; $EventMintRecord$_constructor_minter_receiver_item_id_generate_number
+((slice, slice, int, int)) $EventMintRecord$_constructor_minter_receiver_item_id_generate_number(slice minter, slice receiver, int item_id, int generate_number) inline;
 
 ;; $SendParameters$_constructor_to_value_mode_bounce_body
 ((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_mode_bounce_body(slice to, int value, int mode, int bounce, cell body) inline;

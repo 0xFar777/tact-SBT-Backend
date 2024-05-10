@@ -118,6 +118,19 @@ _ $RoyaltyParams$_get_denominator((int, int, slice) v) inline {
 }
 
 ;;
+;; Type: Mint
+;; Header: 0x58cf5a67
+;; TLB: mint#58cf5a67 query_id:uint64 receiver:address = Mint
+;;
+
+(slice, ((int, slice))) $Mint$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1489984103);
+    var v'query_id = sc_0~load_uint(64);
+    var v'receiver = sc_0~__tact_load_address();
+    return (sc_0, (v'query_id, v'receiver));
+}
+
+;;
 ;; Type: Transfer
 ;; Header: 0x5fcc3d14
 ;; TLB: transfer#5fcc3d14 query_id:uint64 new_owner:address response_destination:Maybe address custom_payload:Maybe ^cell forward_amount:coins forward_payload:remainder<slice> = Transfer
@@ -145,25 +158,28 @@ cell $Transfer$_store_cell((int, slice, slice, cell, int, slice) v) inline {
 
 ;;
 ;; Type: EventMintRecord
-;; Header: 0x29a14acb
-;; TLB: event_mint_record#29a14acb minter:address item_id:int257 generate_number:int257 = EventMintRecord
+;; Header: 0x49909ac1
+;; TLB: event_mint_record#49909ac1 minter:address receiver:address item_id:int257 generate_number:int257 = EventMintRecord
 ;;
 
-builder $EventMintRecord$_store(builder build_0, (slice, int, int) v) inline {
-    var (v'minter, v'item_id, v'generate_number) = v;
-    build_0 = store_uint(build_0, 698436299, 32);
+builder $EventMintRecord$_store(builder build_0, (slice, slice, int, int) v) inline {
+    var (v'minter, v'receiver, v'item_id, v'generate_number) = v;
+    build_0 = store_uint(build_0, 1234213569, 32);
     build_0 = __tact_store_address(build_0, v'minter);
+    build_0 = __tact_store_address(build_0, v'receiver);
     build_0 = build_0.store_int(v'item_id, 257);
-    build_0 = build_0.store_int(v'generate_number, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'generate_number, 257);
+    build_0 = store_ref(build_0, build_1.end_cell());
     return build_0;
 }
 
-cell $EventMintRecord$_store_cell((slice, int, int) v) inline {
+cell $EventMintRecord$_store_cell((slice, slice, int, int) v) inline {
     return $EventMintRecord$_store(begin_cell(), v).end_cell();
 }
 
-((slice, int, int)) $EventMintRecord$_constructor_minter_item_id_generate_number(slice minter, int item_id, int generate_number) inline {
-    return (minter, item_id, generate_number);
+((slice, slice, int, int)) $EventMintRecord$_constructor_minter_receiver_item_id_generate_number(slice minter, slice receiver, int item_id, int generate_number) inline {
+    return (minter, receiver, item_id, generate_number);
 }
 
 ;;

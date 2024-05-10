@@ -17,6 +17,10 @@ struct RoyaltyParams {
     denominator: Int;
     destination: Address;
 }
+message(0x58cf5a67) Mint {
+    query_id: Int as uint64;
+    receiver: Address;
+}
 message(0x5fcc3d14) Transfer {
     query_id: Int as uint64;
     new_owner: Address;

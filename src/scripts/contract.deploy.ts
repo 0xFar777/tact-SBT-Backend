@@ -21,13 +21,13 @@ import { NftCollection } from "../contracts/output/0xFar777-SBT_NftCollection";
         denominator: 1000n,
         destination: owner,
     });
-    
+
     let deployAmount = toNano("0.15");
     let body = beginCell().storeUint(0, 32).storeStringTail("Mint").endCell();
     let testnet = false;
 
     let address = contractAddress(0, init);
-
+    console.log(address);
     // Do deploy
     await deploy(init, deployAmount, body, testnet);
     printHeader("0xFar777-SBT Contract");
